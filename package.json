@@ -1,0 +1,23 @@
+{
+  "name": "frequency-planner-for-mobile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blake-SRTC/Frequency-Planner-for-Mobile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blake-SRTC/Frequency-Planner-for-Mobile/issues"
+  },
+  "homepage": "https://github.com/Blake-SRTC/Frequency-Planner-for-Mobile#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
