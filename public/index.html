@@ -1,28 +1,306 @@
 <!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="syntax.css">
-    <title>Mobile</title>
-</head>
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>Saul</th>
-                <th>Tapia</th>
-                <th>29</th>
-            </tr>
-        </tbody>
-    </table>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!----======== CSS ======== -->
+        <link rel="stylesheet" href="styles.css" />
+
+        <!----===== Iconscout CSS ===== -->
+        <link
+            rel="stylesheet"
+            href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+        />
+
+        <title>TEL-320</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>Frecuency Planner for Mobile</header>
+            <form action="#">
+                <div class="form first">
+                    <div class="details personal">
+                        <span class="title">Settings</span>
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>Generation</label>
+                                <select
+                                    id="generation"
+                                    onchange="bwGeneration();"
+                                    required
+                                >
+                                    <option disabled selected>
+                                        Select generation
+                                    </option>
+                                    <option value="1G">1G</option>
+                                    <option value="2G">2G</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Coverage Radius</label>
+                                <input
+                                    id="radius"
+                                    type="text"
+                                    placeholder="Radius km"
+                                    required
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>J Value</label>
+                                <input
+                                    id="j"
+                                    type="text"
+                                    placeholder="J Rhombic Number"
+                                    required
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>n Value</label>
+                                <input
+                                    id="n"
+                                    type="text"
+                                    placeholder="2.7 to 5"
+                                    required
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Sectors</label>
+                                <select id="sector" required>
+                                    <option disabled selected>
+                                        Select Sectors
+                                    </option>
+                                    <option value="1">1 Sector</option>
+                                    <option value="3">3 Sectors</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Q Value</label>
+                                <input
+                                    id="q"
+                                    type="text"
+                                    placeholder="Q Value"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details ID">
+                        <span class="title">Details</span>
+
+                        <div class="fields">
+                            <div class="input-field" id="ov-bw">
+                                <label>Overall Bandwidth MHz</label>
+                                <input
+                                    id="bw"
+                                    type="text"
+                                    placeholder="BW MHz"
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Subcarrier Bandwidth KHz</label>
+                                <input
+                                    id="bws"
+                                    type="text"
+                                    placeholder="BW MHz"
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label></label>
+                            </div>
+                        </div>
+
+                        <button class="calcBtn">
+                            <span class="btnText">Calculate</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Cuadro de resultados -->
+        <div class="container">
+            <header>Resultados</header>
+            <form action="#" id="results">
+                <div class="form first">
+                    <div class="details personal">
+                        <span class="title">Generation</span>
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>J Validated</label>
+                                <input
+                                    id="j-validated"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Viability</label>
+                                <input
+                                    id="viability"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Reuse Distance</label>
+                                <input
+                                    id="r-distance"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Cluster Area</label>
+                                <input
+                                    id="a-cluster"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Red Area</label>
+                                <input
+                                    id="a-red"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Subcarriers</label>
+                                <input
+                                    id="subcarriers"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Frecuencias por Celda</label>
+                                <input
+                                    id="frec-cel"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Frecuencias por sector</label>
+                                <input
+                                    id="frec-sec"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Canales Sector</label>
+                                <input
+                                    id="ch-sec"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Canales Celda</label>
+                                <input
+                                    id="ch-cel"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Canales Cluster</label>
+                                <input
+                                    id="ch-clus"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label>Canales Area</label>
+                                <input
+                                    id="ch-area"
+                                    type="text"
+                                    placeholder=""
+                                    readonly
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details ID">
+                        <span class="title">Details</span>
+
+                        <div class="fields"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script>
+        function bwGeneration() {
+            let bw_gen = document.getElementById("generation").value;
+            if (bw_gen === "2G") {
+                // Set de bandwith general
+                document.getElementById(
+                    "ov-bw"
+                ).innerHTML = `<label>Overall Bandwidth MHz</label>
+                                <select id="bw" required>
+                                    <option disabled selected>
+                                        Selec Bandwith
+                                    </option>
+                                    <option value="15000">15</option>
+                                    <option value="25000">25</option>
+                                </select>`;
+                // Set de bandwith subportadora
+                document.getElementById("bws").value = "200";
+            } else if (bw_gen === "1G") {
+                // Set de bandwith general
+                document.getElementById(
+                    "ov-bw"
+                ).innerHTML = `<label>Overall Bandwidth MHz</label>
+                                <select id="bw" required>
+                                    <option value="10000">10</option>
+                                </select>`;
+                // Set de bandwith subportadora
+                document.getElementById("bws").value = "30";
+            }
+        }
+    </script>
+
+    <script src="index.js"></script>
 </html>

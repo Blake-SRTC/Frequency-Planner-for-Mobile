@@ -8,10 +8,14 @@ let sector = 3;
 let q = 2;
 
 // Valor n (relacion de proteccion)
-let n = 3;
+let n = 2.8;
+
+// Radio en km
+let radio = 1;
 
 // Validacion de J Rombico
-let j = 4;
+let j = 7;
+
 let condicion = true;
 let i = 1;
 let k = 0;
@@ -45,12 +49,11 @@ if (Number.isInteger(j)) {
 
 // Distancia de reutilizacion
 let d_reutilizacion = 0;
-let radio = 1;
 if (q <= 1) {
     console.log("No existe distanciade reutilizacion");
 } else {
     d_reutilizacion = Math.sqrt(3 * j * Math.pow(radio, 2)).toFixed(2);
-    console.log("Distancia de reutilizacion: " + d_reutilizacion);
+    console.log("Distancia de reutilizacion: " + d_reutilizacion + " km");
 }
 
 // Relacion de proteccion (variar entre 8 y 12) (red no viable < 8db)
@@ -85,7 +88,7 @@ let a_cluster = a_hex * j;
 console.log("Area de cluster: " + a_cluster + " km2");
 
 // Area total de red en km2
-let a_red = a_cluster * q;
+let a_red = (a_cluster * q).toFixed(2);
 console.log("Area de red: " + a_red + " km2");
 
 // Numero de subportadoras
@@ -132,9 +135,16 @@ if (gen === "1G") {
     let ch_cluster = ch_celda * j;
     let ch_area = ch_cluster * q;
 
-    console.log("---------- 1G ------------------");
+    console.log("---------- 2G ------------------");
     console.log("Ch sector: " + ch_sector);
     console.log("Ch celda: " + ch_celda);
     console.log("Ch cluster: " + ch_cluster);
     console.log("Ch area: " + ch_area);
 }
+
+// Cantidad de columnas en la tabla
+let columnas = q * j * sector;
+console.log("Cantidad de columnas en la tabla: " + columnas);
+// Cantidad de filas en la tabla
+let filas = Math.ceil(num_sub / columnas);
+console.log("Cantidad de filas en la tabla: " + filas);
