@@ -21,6 +21,6 @@ router.get("*", (req, res) => {
     res.send("404 not found");
 });
 
-server.listen(5000, () => {
-    console.log("listening on *:6000");
+server.listen(5050, () => {
+    console.log("listening on *:5050");
 });

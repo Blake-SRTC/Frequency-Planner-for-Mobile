@@ -1,4 +1,4 @@
-//document.getElementById("generation").onchange;
+window.onload = () => {
 
 const form = document.querySelector("form"),
     calcBtn = form.querySelector(".calcBtn");
@@ -35,6 +35,7 @@ calcBtn.addEventListener("click", () => {
             frec_table(q, j, sector, num_sub);
         }
     }
+    // Ejecicion del programa principal
 });
 
 // Validacion de J
@@ -211,4 +212,6 @@ function frec_table(q, j, sector, num_sub) {
     }
     document.getElementById("body").innerHTML = body;
     
+}
+
 }
