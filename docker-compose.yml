@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+    Mobile:
+        container_name: Mobile
+        restart: always
+        build: .
+        ports: 
+            - "6000:6000"
+        environment:
+            - TZ=America/La_Paz
+        volumes:
+            - .:/usr/src/app
