@@ -29,7 +29,10 @@ calcBtn.addEventListener("click", () => {
             let num_sub = subcarriers(generation, bw, bws);
             let frec_cel = frec_celdas(num_sub, j);
             let frec_sec = frec_sector(frec_cel, sector);
-            ch_gen(generation, frec_sec,j ,sector, q);
+            ch_gen(generation, frec_sec, j, sector, q);
+
+            // Tabla
+            frec_table(q, j, sector, num_sub);
         }
     }
 });
@@ -173,4 +176,39 @@ function ch_gen(generation, frec_sec, j, sector, q) {
         document.getElementById("ch-clus").value = ch_cluster;
         document.getElementById("ch-area").value = ch_area;
     }
+}
+
+function frec_table(q, j, sector, num_sub) {
+    let columnas = j * sector;
+    let filas = Math.ceil(num_sub / columnas);
+    
+    // Headers de tabla
+    let th = "";
+    const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
+    for (let b = 0; b < sector; b++) {
+        for (let c = 1; c <= j; c++) { 
+            th += `<th>` + c + alphabet[b] +`</th>`;     
+        }                
+    }
+    document.getElementById("header").innerHTML = th;
+
+    // Datos de tabla
+    let body = "";
+    let indice = 1;
+    for (let a = 0; a < filas; a++) {
+        
+        body += `<tr>`;
+        for (let b = 0; b < columnas; b++) {
+            if (indice <= num_sub) {
+                body += `<td>` + indice + `</td>`;
+                indice++; 
+            }else {
+                body += `<td>` + `-` + `</td>`;
+            }     
+        }
+        body += `</tr>`;
+    }
+    document.getElementById("body").innerHTML = body;
+    
 }
