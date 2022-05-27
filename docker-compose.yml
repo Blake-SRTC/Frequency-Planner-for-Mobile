@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-    Mobile:
-        container_name: Mobile
+    mobile:
+        container_name: mobile
         restart: always
         build: .
         ports: 

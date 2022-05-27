@@ -1,10 +1,12 @@
-//document.getElementById("generation").onchange;
-
 const form = document.querySelector("form"),
     calcBtn = form.querySelector(".calcBtn");
 
 calcBtn.addEventListener("click", () => {
+    // Limpia los formularios
+    // Limpia la tabla
     document.getElementById("results").reset();
+    document.getElementById("header").innerHTML = "";
+    document.getElementById("body").innerHTML = "";
     // Definicion de parametros iniciales
     let generation = document.getElementById("generation").value;
     let radius = document.getElementById("radius").value;
@@ -16,24 +18,42 @@ calcBtn.addEventListener("click", () => {
     let bw = document.getElementById("bw").value;
     let bws = document.getElementById("bws").value;
 
-    // Ejecicion del programa principal
+    // Comprobacion de campos vacios
+    if (
+        generation === "Escoja Generacion" ||
+        sector === "Escoja Sectores" ||
+        j === "" ||
+        n === "" ||
+        q === "" ||
+        bw === "Select Bandwidth" ||
+        radius === ""
+    ) {
+        // Limpia la tabla
+        // Limpia los formularios
+        document.getElementById("results").reset();
+        document.getElementById("header").innerHTML = "";
+        document.getElementById("body").innerHTML = "";
+        alert("Valor vacio");
+    } else {
+        // Ejecicion del programa principal
+        let condicion = validar_j(Number(j));
 
-    let condicion = validar_j(Number(j));
+        if (condicion === true) {
+            let condicion_2 = viability(n, j, sector);
+            if (condicion_2 === true) {
+                d_reutilizacion(q, j, radius);
+                let a_cluster = areaCluster(radius, j);
+                areaRed(a_cluster, q);
+                let num_sub = subcarriers(generation, bw, bws);
+                let frec_cel = frec_celdas(num_sub, j);
+                let frec_sec = frec_sector(frec_cel, sector);
+                ch_gen(generation, frec_sec, j, sector, q);
 
-    if (condicion === true) {
-        let condicion_2 = viability(n, j, sector);
-        if (condicion_2 === true) {
-            d_reutilizacion(q, j, radius);
-            let a_cluster = areaCluster(radius, j);
-            areaRed(a_cluster, q);
-            let num_sub = subcarriers(generation, bw, bws);
-            let frec_cel = frec_celdas(num_sub, j);
-            let frec_sec = frec_sector(frec_cel, sector);
-            ch_gen(generation, frec_sec, j, sector, q);
-
-            // Tabla
-            frec_table(q, j, sector, num_sub);
+                // Tabla
+                frec_table(q, j, sector, num_sub);
+            }
         }
+        // Ejecicion del programa principal
     }
 });
 
@@ -64,6 +84,7 @@ function validar_j(j) {
             if (limite === 100) {
                 condicion = false;
                 document.getElementById("j-validated").value = "False";
+                alert("J no es Rombico!");
                 return false;
             }
             limite += 1;
@@ -88,6 +109,7 @@ function d_reutilizacion(q, j, radio) {
 function viability(n, j, sector) {
     if (n < 2.7 || n > 5) {
         document.getElementById("viability").value = "n No valido";
+        alert("Valor de n No valido");
         return false;
     } else {
         let divisor = 0;
@@ -181,15 +203,42 @@ function ch_gen(generation, frec_sec, j, sector, q) {
 function frec_table(q, j, sector, num_sub) {
     let columnas = j * sector;
     let filas = Math.ceil(num_sub / columnas);
-    
+
     // Headers de tabla
     let th = "";
-    const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    const alphabet = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+    ];
 
     for (let b = 0; b < sector; b++) {
-        for (let c = 1; c <= j; c++) { 
-            th += `<th>` + c + alphabet[b] +`</th>`;     
-        }                
+        for (let c = 1; c <= j; c++) {
+            th += `<th>` + c + alphabet[b] + `</th>`;
+        }
     }
     document.getElementById("header").innerHTML = th;
 
@@ -197,18 +246,16 @@ function frec_table(q, j, sector, num_sub) {
     let body = "";
     let indice = 1;
     for (let a = 0; a < filas; a++) {
-        
         body += `<tr>`;
         for (let b = 0; b < columnas; b++) {
             if (indice <= num_sub) {
                 body += `<td>` + indice + `</td>`;
-                indice++; 
-            }else {
+                indice++;
+            } else {
                 body += `<td>` + `-` + `</td>`;
-            }     
+            }
         }
         body += `</tr>`;
     }
     document.getElementById("body").innerHTML = body;
-    
 }

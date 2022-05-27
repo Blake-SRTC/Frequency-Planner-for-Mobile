@@ -23,18 +23,18 @@
             <form action="#">
                 <div class="form first">
                     <div class="details personal">
-                        <span class="title">Settings</span>
+                        <span class="title">Parametros</span>
 
                         <div class="fields">
                             <div class="input-field">
-                                <label>Generation</label>
+                                <label>Generacion</label>
                                 <select
                                     id="generation"
                                     onchange="bwGeneration();"
                                     required
                                 >
                                     <option disabled selected>
-                                        Select generation
+                                        Escoja Generacion
                                     </option>
                                     <option value="1G">1G</option>
                                     <option value="2G">2G</option>
@@ -42,51 +42,51 @@
                             </div>
 
                             <div class="input-field">
-                                <label>Coverage Radius</label>
+                                <label>Radio de Cobertura</label>
                                 <input
                                     id="radius"
-                                    type="text"
+                                    type="number"
                                     placeholder="Radius km"
                                     required
                                 />
                             </div>
 
                             <div class="input-field">
-                                <label>J Value</label>
+                                <label>J Valor</label>
                                 <input
                                     id="j"
-                                    type="text"
+                                    type="number"
                                     placeholder="J Rhombic Number"
                                     required
                                 />
                             </div>
 
                             <div class="input-field">
-                                <label>n Value</label>
+                                <label>n Valor</label>
                                 <input
                                     id="n"
-                                    type="text"
+                                    type="number"
                                     placeholder="2.7 to 5"
                                     required
                                 />
                             </div>
 
                             <div class="input-field">
-                                <label>Sectors</label>
+                                <label>Sectores</label>
                                 <select id="sector" required>
                                     <option disabled selected>
-                                        Select Sectors
+                                        Escoja Sectores
                                     </option>
                                     <option value="1">1 Sector</option>
-                                    <option value="3">3 Sectors</option>
+                                    <option value="3">3 Sectores</option>
                                 </select>
                             </div>
 
                             <div class="input-field">
-                                <label>Q Value</label>
+                                <label>Q Valor</label>
                                 <input
                                     id="q"
-                                    type="text"
+                                    type="number"
                                     placeholder="Q Value"
                                     required
                                 />
@@ -95,25 +95,25 @@
                     </div>
 
                     <div class="details ID">
-                        <span class="title">Details</span>
+                        <span class="title">Valores por Defecto</span>
 
                         <div class="fields">
                             <div class="input-field" id="ov-bw">
-                                <label>Overall Bandwidth MHz</label>
+                                <label>Bandwidth MHz Total</label>
                                 <input
                                     id="bw"
                                     type="text"
-                                    placeholder="BW MHz"
+                                    placeholder="Bw MHz"
                                     readonly
                                 />
                             </div>
 
                             <div class="input-field">
-                                <label>Subcarrier Bandwidth KHz</label>
+                                <label>Bandwidth KHz Subportadora</label>
                                 <input
                                     id="bws"
                                     type="text"
-                                    placeholder="BW MHz"
+                                    placeholder="Bw MHz"
                                     readonly
                                 />
                             </div>
@@ -124,7 +124,7 @@
                         </div>
 
                         <button class="calcBtn">
-                            <span class="btnText">Calculate</span>
+                            <span class="btnText">Calcular</span>
                             <!-- <i class="uil uil-navigator"></i> -->
                         </button>
                     </div>
@@ -137,11 +137,11 @@
             <form action="#" id="results">
                 <div class="form first">
                     <div class="details personal">
-                        <span class="title">Generation</span>
+                        <span class="title">Salidas</span>
 
                         <div class="fields">
                             <div class="input-field">
-                                <label>J Validated</label>
+                                <label>J Valido</label>
                                 <input
                                     id="j-validated"
                                     type="text"
@@ -151,7 +151,7 @@
                             </div>
 
                             <div class="input-field">
-                                <label>Viability</label>
+                                <label>Viabilidad</label>
                                 <input
                                     id="viability"
                                     type="text"
@@ -161,7 +161,7 @@
                             </div>
 
                             <div class="input-field">
-                                <label>Reuse Distance</label>
+                                <label>Distancia de reutilizacion</label>
                                 <input
                                     id="r-distance"
                                     type="text"
@@ -191,7 +191,7 @@
                             </div>
 
                             <div class="input-field">
-                                <label>Subcarriers</label>
+                                <label>Subportadoras</label>
                                 <input
                                     id="subcarriers"
                                     type="text"
@@ -301,10 +301,10 @@
                 // Set de bandwith general
                 document.getElementById(
                     "ov-bw"
-                ).innerHTML = `<label>Overall Bandwidth MHz</label>
+                ).innerHTML = `<label>Bandwidth MHz Total</label>
                                 <select id="bw" required>
                                     <option disabled selected>
-                                        Selec Bandwith
+                                        Select Bandwidth
                                     </option>
                                     <option value="15000">15</option>
                                     <option value="25000">25</option>
@@ -315,7 +315,7 @@
                 // Set de bandwith general
                 document.getElementById(
                     "ov-bw"
-                ).innerHTML = `<label>Overall Bandwidth MHz</label>
+                ).innerHTML = `<label>Bandwidth MHz Total</label>
                                 <select id="bw" required>
                                     <option value="10000">10</option>
                                 </select>`;
